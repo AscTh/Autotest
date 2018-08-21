@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="jfoenix-8.0.5">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/Рб/jfoenix-8.0.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ideaLibSources/jfoenix-8.0.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
