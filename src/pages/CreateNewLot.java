@@ -17,7 +17,7 @@ public class CreateNewLot extends PageObject {
     private WebElement typeContract;
 
     // Способ определения поставщика
-    @FindBy(name = "methodOfSupplierId")
+    @FindBy(css = "select[name=\"methodOfSupplierId\"]")
     private WebElement definitionMethod;
 
     // Основание заключения контракта с единственным поставщиком
@@ -85,11 +85,15 @@ public class CreateNewLot extends PageObject {
     private WebElement yes_sendToGRBS;
 
     // Кнопка согласовать
-    @FindBy(css = "#application-navigation > div.row > div > div.pull-right > button:nth-child(6)")
+//    @FindBy(css = "#application-navigation > div.row > div > div.pull-right > button:nth-child(6)")
+    @FindBy(xpath = "//*[@id=\"application-navigation\"]/div[3]/div/div[2]/button[6]")
     private WebElement approve;
 
     // Кнопка подтверждения согласования
-    @FindBy(xpath = "/html/body/div[6]/div/div/div[3]/div/div/button[1]")
+//    @FindBy(xpath = "/html/body/div[6]/div/div/div[3]/div/div/button[1]")
+//    @FindBy(xpath = "//*[@class='btn g-btn g-btn_background_green btn-success green-btn g-btn_font']//*[text()='Да']")
+//    @FindBy(css = "body > div.modal.bootstrap-dialog.size-normal.type-primary.fade.in > div > div > div.modal-footer > div > div > button.btn.g-btn.g-btn_background_green.btn-success.green-btn.g-btn_font")
+    @FindBy(xpath = ".//button[text()='Да']")
     private WebElement yes_approve;
 
     // Утвердить
@@ -151,10 +155,12 @@ public class CreateNewLot extends PageObject {
         return driver.getCurrentUrl();
     }
 
-    public CreateNewLot setApprove() {
+    public CreateNewLot setApprove() throws InterruptedException {
+        Thread.sleep(3000);
         driver.navigate().refresh();
         wait.until(ExpectedConditions.elementToBeClickable(approve));
         approve.click();
+        Thread.sleep(3000);
         wait.until(ExpectedConditions.elementToBeClickable(yes_approve));
         yes_approve.click();
         return this;

@@ -9,42 +9,38 @@ import tests.PageObject;
 
 public class PurchasePlanPage extends PageObject {
 
-    public PurchasePlanPage(WebDriver driver) {
+    PurchasePlanPage(WebDriver driver) {
         super(driver);
     }
 
-    /**
-     * Кнопка отправить на согласование
-     */
+    //Кнопка отправить на согласование
     @FindBy(xpath = "//*[@id=\"purchase-plans-new\"]/form/div/div[1]/input")
     private WebElement sendForApproval;
 
-    /**
-     * Статус Плана закупок
-     */
+    //Статус Плана закупок
     @FindBy(xpath = "//*[@id=\"purchase-plans-show\"]/fieldset[1]/div[1]/div[1]/div[3]/div/b")
     private static WebElement state;
 
-    /**
-     * Кнопка "отозвать с согласования"
-     */
+    //Кнопка "отозвать с согласования"
     @FindBy(xpath = "//*[@id=\"purchase-plans-show\"]/div[2]/div[1]/a[3]")
     private static WebElement recall;
 
-    /**
-     * Кнопка утверждения
-     */
+    //Кнопка утверждения
     @FindBy(css = "#purchase-plans-show > div.controls.fixed-panel.shadow.mb_15.fullwidth > div.pull-left > a.btn.green-btn.ng-scope")
     private WebElement approveButton;
 
-    /**
-     * Кнопка опубликовать
-     */
+    //Кнопка опубликовать
     @FindBy(css = "#purchase-plans-show > div.controls.fixed-panel.shadow.mb_15.fullwidth > div.pull-left > a.btn.green-btn.ng-scope")
     private WebElement publishButton;
 
-    public void sendForApproval() {
+    public void sendForApproval() throws InterruptedException {
         sendForApproval.click();
+        for (int i = 0; i < 10; i++)
+            if (sendForApproval.getText().equals("Отправить на согласование")) {
+                Thread.sleep(500);
+                sendForApproval.click();
+            } else
+                break;
     }
 
     public PurchasePlanPage setApproveButton() {
@@ -62,7 +58,7 @@ public class PurchasePlanPage extends PageObject {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"purchase-plans-show\"]/div[2]/div[1]/a[3]")));
         clickFindBy(publishButton);
         for (int i = 0; i < 20; i++) {
-            Thread.sleep(1500);
+            Thread.sleep(2000);
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"purchase-plans-show\"]/fieldset[1]/div[1]/div[1]/div[3]/div/b")));
             if ("Опубликован".equals(state.getText()))
                 break;

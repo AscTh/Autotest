@@ -4,11 +4,11 @@ import com.jfoenix.controls.*;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ToggleGroup;
 import tests.LoginTest;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -29,8 +29,6 @@ public class Controller implements Initializable {
     public JFXTextField login;
     @FXML
     private JFXPasswordField password;
-    @FXML
-    ToggleGroup toggleGroup = new ToggleGroup();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -64,7 +62,11 @@ public class Controller implements Initializable {
         Task task = new Task() {
             @Override
             protected Object call() throws InterruptedException {
-                LoginTest.publish_plans();
+                try {
+                    LoginTest.publish_plans();
+                } catch (SQLException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
                 return null;
             }
         };

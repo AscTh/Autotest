@@ -13,15 +13,11 @@ public class CreateNewDOZ extends PageObject {
         super(driver);
     }
 
-    /**
-     * Кнопка добавления спецификации
-     */
+    // Кнопка добавления спецификации
     @FindBy(css = "div.col-md-12 > a.btn.green-btn")
     private WebElement addSpecification;
 
-    /**
-     * Кнопка редактирования СПГЗ
-     */
+    //Кнопка редактирования СПГЗ
     @FindBy(xpath = "(//a[contains(text(),'Редактировать')])[2]")
     private WebElement editSPGZ;
 
@@ -115,33 +111,23 @@ public class CreateNewDOZ extends PageObject {
     @FindBy(css = "i.fa.fa-calculator")
     private WebElement calculatorNMC;
 
-    /**
-     * Адрес поставки ФИАС
-     */
+    //Адрес поставки ФИАС
     @FindBy(id = "fias-input")
     private WebElement fiasInput;
 
-    /**
-     * ФИАС код
-     */
+    //ФИАС код
     @FindBy(id = "ui-id-3")
     private WebElement fiasCode;
 
-    /**
-     * Сохранение ДОЗ
-     */
+    // Сохранение ДОЗ
     @FindBy(xpath = "//*[@id=\"applicationPanel\"]/div[3]/button")
     private WebElement saveDOZ;
 
-    /**
-     * Утверждение ДОЗ
-     */
+    //Утверждение ДОЗ
     @FindBy(css = "#applicationPanel > div.pull-right > button:nth-child(2)")
     private WebElement approveDOZ;
 
-    /**
-     * Создать лот
-     */
+    //Создать лот
     @FindBy(css = "#applicationPanel > div.pull-right > button:nth-child(1)")
     private WebElement createLot;
 

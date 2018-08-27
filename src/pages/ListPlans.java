@@ -4,58 +4,47 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import tests.PageObject;
+import tests.PurchasePlanStatus;
+
+import java.sql.SQLException;
+
+import static tests.DataConnection.update;
 
 public class ListPlans extends PageObject {
 
-    ListPlans(WebDriver driver) {
+    public ListPlans(WebDriver driver) {
         super(driver);
     }
 
-    /**
-     * Версия Плана Закупок
-     */
+    //Версия Плана Закупок
     @FindBy(xpath = "/html/body/div[2]/div[3]/div[1]/div/div[4]/div/div[1]/div[2]/table/tbody/tr/td[1]/a")
     private WebElement purchasePlanNumber;
 
-    /**
-     * Новая версия Плана Закупок
-     */
+    //Новая версия Плана Закупок
     @FindBy(xpath = "/html/body/div[2]/div[3]/div[1]/div/div[4]/div/div[1]/div[2]/table/tbody/tr[2]/td[1]/a")
     private WebElement newPurchasePlanNumber;
 
-    /**
-     * Версия Плана Графика
-     */
+    //Версия Плана Графика
     @FindBy(xpath = "//*[@id=\"plan-schedules-index\"]/div[2]/table/tbody/tr/td[1]/a")
     private WebElement schedulePlanNumber;
 
-    /**
-     * Новая версия Плана Графика
-     */
+    //Новая версия Плана Графика
     @FindBy(css = "#plan-schedules-index > div:nth-child(2) > table > tbody > tr:nth-child(2) > td:nth-child(1) > a")
     private WebElement newSchedulePlanNumber;
 
-    /**
-     * Кнопка создания нового ПЗ
-     */
+    // Кнопка создания нового ПЗ
     @FindBy(xpath = "/html/body/div[2]/div[3]/div[1]/div/div[4]/div/div[1]/div[1]/div[2]/a")
     private WebElement createNewPurchasePlan;
 
-    /**
-     * Создание нового ПГ
-     */
+    //Создание нового ПГ
     @FindBy(xpath = "//*[@id=\"plan-schedules-index\"]/div[1]/div[2]/a")
     private WebElement newSchedulePlan;
 
-    /**
-     * Статус ПЗ
-     */
+    //Статус ПЗ
     @FindBy(xpath = "/html/body/div[2]/div[3]/div[1]/div/div[4]/div/div[1]/div[2]/table/tbody/tr/td[3]")
     private WebElement stateOldPP;
 
-    /**
-     * Статус нового ПЗ
-     */
+    //Статус нового ПЗ
     @FindBy(xpath = "/html/body/div[2]/div[3]/div[1]/div/div[4]/div/div[1]/div[2]/table/tbody/tr[2]/td[3]")
     private WebElement stateNewPP;
 
@@ -93,11 +82,13 @@ public class ListPlans extends PageObject {
         return new ScheldulePlanPage(driver);
     }
 
-    public Pair<String, ARM> reconcile(String link) {
+    public void reconcile() throws SQLException, ClassNotFoundException {
         char[] str = newPurchasePlanNumber.getAttribute("href").replaceAll("\\D+", "").toCharArray();
+        String ID = "";
         for (int i = 1; i < str.length; i++) {
-            link = link.concat(String.valueOf(str[i]));
+            ID = ID.concat(String.valueOf(str[i]));
         }
-        return new Pair<>(link, new ARM(driver));
+        int ENTITY_ID = Integer.parseInt(ID);
+        update(PurchasePlanStatus.APPROVED.getId(), ENTITY_ID);
     }
 }

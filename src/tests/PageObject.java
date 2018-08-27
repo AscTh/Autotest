@@ -66,6 +66,13 @@ public class PageObject extends FunctionalTest {
         return (!bool) ? day + "." + mount + "." + year : mount;
     }
 
+    static void print(final String string, boolean bool) {
+        if (bool)
+            View.getResult_console().setText(string);
+        else
+            View.getResult_console().appendText(string);
+    }
+
     protected void clickFindBy(WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click()", element);
     }
