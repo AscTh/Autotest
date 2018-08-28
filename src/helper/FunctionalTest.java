@@ -1,4 +1,4 @@
-package tests;
+package helper;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,8 +12,8 @@ public class FunctionalTest {
     protected static ChromeOptions options;
 //    protected static FirefoxDriver firefoxDriver;
 
-    public static void before() {
-        /*System.setProperty("webdriver.gecko.driver", "C:\\test\\geckodriver.exe");
+    static void before() {
+        /*System.setProperty("webdriver.gecko.driver", "C:/test/geckodriver.exe");
         firefoxDriver = new FirefoxDriver();
         driver = new FirefoxDriver();*/
         System.setProperty("webdriver.chrome.driver", "C:/test/chromedriver.exe");

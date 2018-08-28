@@ -1,4 +1,4 @@
-package tests;
+package helper;
 
 public enum PurchasePlanStatus {
     DF_APPROVED(1, "На согласовании ДФ"),

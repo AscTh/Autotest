@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import tests.PageObject;
+import helper.PageObject;
 
 public class CreateNewDOZ extends PageObject {
 
@@ -21,93 +21,63 @@ public class CreateNewDOZ extends PageObject {
     @FindBy(xpath = "(//a[contains(text(),'Редактировать')])[2]")
     private WebElement editSPGZ;
 
-    /**
-     * Кнопка выбора СПГЗ из списка доступных
-     */
+    //Кнопка выбора СПГЗ из списка доступных
     @FindBy(xpath = "//*[@id=\"spec-spgz-select\"]/div[3]/div/div/table/tbody/tr[2]/td[2]/label")
     private WebElement selectSPGZ;
 
-    /**
-     * Кнопка "Выбрать"
-     */
+    // Кнопка "Выбрать"
     @FindBy(xpath = "//*[@id=\"spec-spgz-select-modal\"]/div/div/div[3]/button[1]")
     private WebElement buttonSelect;
 
-    /**
-     * Объем закупки
-     */
+    //Объем закупки
     @FindBy(name = "purchaseAmount")
     private WebElement amountOfPurchase;
 
-    /**
-     * "Устанавливается в лоте"
-     */
+    //"Устанавливается в лоте"
     @FindBy(css = "div.col-md-8 > input.ng-valid.ng-dirty")
     private WebElement installedInLot;
 
-    /**
-     * "Обоснование суммы закупки"
-     */
+    //"Обоснование суммы закупки"
     @FindBy(name = "reason")
     private WebElement justification;
 
-    /**
-     * Файл-обоснование суммы закупки
-     */
+    //Файл-обоснование суммы закупки
     @FindBy(name = "file")
     private WebElement file;
 
-    /**
-     * Добавить этап поставки
-     */
+    //Добавить этап поставки
     @FindBy(css = "div.col-md-10 > a.btn.green-btn")
     private WebElement addSupplyStage;
 
-    /**
-     * Объем поставки
-     */
+    //Объем поставки
     @FindBy(xpath = "//*[@id=\"delivery-modal\"]/div/div/div[2]/fieldset/div[1]/div[2]/input")
     private WebElement scopeOfSupply;
 
-    /**
-     * Выборка этапа поставки по дате
-     */
+    //Выборка этапа поставки по дате
     @FindBy(xpath = "(//input[@name='date-type'])[2]")
     private WebElement selectDate;
 
-    /**
-     * Дата начала поставки
-     */
+    //Дата начала поставки
     @FindBy(xpath = "(//input[@name=''])[7]")
     private WebElement deliveryStartDate;
 
-    /**
-     * Дака окончания поставки
-     */
+    //Дака окончания поставки
     @FindBy(xpath = "(//input[@name=''])[8]")
     private WebElement deliveryEndDate;
 
-    /**
-     * Сохранить спеку
-     */
+    //Сохранить спеку
     @FindBy(xpath = "//*[@id=\"delivery-modal\"]/div/div/div[3]/button[1]")
     private WebElement buttonSaveDelivery;
 
-    /**
-     * Кнопка "Редактировать"
-     */
+    //Кнопка "Редактировать"
     @FindBy(xpath = "//*[@id=\"detailed-purchase-spec-new-modal\"]/div/div/div[2]/ng-include/fieldset[4]/div[2]/div/div/table/tbody/tr/td[5]/div/ul/li[1]/a")
     private WebElement buttonEdit;
 
-    /**
-     * Кнопка "Сохранить спецификацию"
-     */
+    //Кнопка "Сохранить спецификацию"
     @FindBy(xpath = "//*[@id=\"detailed-purchase-spec-new-modal\"]/div/div/div[3]/button[1]")
     private WebElement buttonSaveSpec;
 
-    /**
-     * Расчет НМЦ
-     */
+    //Расчет НМЦ
     @FindBy(css = "i.fa.fa-calculator")
     private WebElement calculatorNMC;
 

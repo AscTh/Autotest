@@ -1,13 +1,15 @@
 package pages;
 
+import helper.PurchasePlanStatus;
+import helper.PageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import tests.PageObject;
 
 public class PurchasePlanPage extends PageObject {
+    private final String string = "http://eaist2-f.mos.ru/index.html#/purchase-plan/purchase-plans/new";
 
     PurchasePlanPage(WebDriver driver) {
         super(driver);
@@ -35,36 +37,26 @@ public class PurchasePlanPage extends PageObject {
 
     public void sendForApproval() throws InterruptedException {
         sendForApproval.click();
-        for (int i = 0; i < 10; i++)
-            if (sendForApproval.getText().equals("Отправить на согласование")) {
-                Thread.sleep(500);
-                sendForApproval.click();
-            } else
-                break;
+        Thread.sleep(3000);
+        if (driver.getCurrentUrl().equals(string))
+            sendForApproval();
     }
 
-    public PurchasePlanPage setApproveButton() {
-        if (!state.getText().equals("Согласовано")) {
-            driver.navigate().refresh();
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#purchase-plans-show > div.controls.fixed-panel.shadow.mb_15.fullwidth > div.pull-left > a.btn.green-btn.ng-scope")));
-            clickFindBy(approveButton);
-            System.out.println(driver.getCurrentUrl() + " ");
-        } else
-            approveButton.click();
-        return this;
+    public String setApproveButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(approveButton));
+        approveButton.click();
+        return driver.getCurrentUrl();
     }
 
-    public PurchasePlanPage publish() throws InterruptedException {
+    public void publish() throws InterruptedException {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"purchase-plans-show\"]/div[2]/div[1]/a[3]")));
         clickFindBy(publishButton);
         for (int i = 0; i < 20; i++) {
             Thread.sleep(2000);
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"purchase-plans-show\"]/fieldset[1]/div[1]/div[1]/div[3]/div/b")));
-            if ("Опубликован".equals(state.getText()))
+            if (PurchasePlanStatus.PUBLISHED.getName().equals(state.getText()))
                 break;
-            clickFindBy(publishButton);
+            publish();
         }
-        System.out.println("Публикация ПЗ: ");
-        return this;
     }
 }

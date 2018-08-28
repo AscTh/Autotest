@@ -24,7 +24,7 @@
                      minWidth="36.0" onAction="#toggleButton" prefHeight="32.0" prefWidth="40.0" size="6.0"
                      style="-fx-text-fill: white;" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="88.0"/>
     <JFXToggleButton fx:id="default_button1" contentDisplay="RIGHT" graphicTextGap="2.0" layoutX="68.0" layoutY="88.0"
-                     minWidth="36.0" onAction="#toggleButton" prefHeight="32.0" prefWidth="40.0" size="6.0"
+                     minWidth="36.0" prefHeight="32.0" prefWidth="40.0" size="6.0"
                      style="-fx-text-fill: white;" toggleColor="#5887ff" toggleLineColor="#55c1ff"/>
     <JFXTextArea fx:id="result_console" editable="false" layoutX="68.0" layoutY="211.0"
                  style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0"

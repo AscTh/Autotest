@@ -4,7 +4,7 @@ import com.jfoenix.controls.*;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import tests.LoginTest;
+import helper.LoginTest;
 
 import java.io.IOException;
 import java.net.URL;
@@ -12,8 +12,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-import static tests.FunctionalTest.clear;
-import static tests.FunctionalTest.tearDown;
+import static helper.FunctionalTest.clear;
+import static helper.FunctionalTest.tearDown;
 
 public class Controller implements Initializable {
 

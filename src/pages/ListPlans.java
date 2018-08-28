@@ -3,12 +3,12 @@ package pages;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import tests.PageObject;
-import tests.PurchasePlanStatus;
+import helper.PageObject;
+import helper.PurchasePlanStatus;
 
 import java.sql.SQLException;
 
-import static tests.DataConnection.update;
+import static helper.DataConnection.update;
 
 public class ListPlans extends PageObject {
 

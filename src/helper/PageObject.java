@@ -1,6 +1,5 @@
-package tests;
+package helper;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -66,7 +65,7 @@ public class PageObject extends FunctionalTest {
         return (!bool) ? day + "." + mount + "." + year : mount;
     }
 
-    static void print(final String string, boolean bool) {
+    protected static void print(final String string, boolean bool) {
         if (bool)
             View.getResult_console().setText(string);
         else
@@ -75,18 +74,6 @@ public class PageObject extends FunctionalTest {
 
     protected void clickFindBy(WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click()", element);
-    }
-
-    protected void clickBy(By by) {
-        driver.findElement(by).click();
-    }
-
-    protected boolean loadingPage() {
-        return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");//interactive
-    }
-
-    protected void loadingAjax() {
-        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) driver -> (Boolean) ((JavascriptExecutor) driver).executeScript("return jQuery.active == 0"));
     }
 
     protected void waiting(WebElement webElement) throws InterruptedException {
@@ -98,16 +85,15 @@ public class PageObject extends FunctionalTest {
         }
     }
 
-    private boolean compare(String res, WebElement value) throws InterruptedException {
+    private void compare(String res, WebElement value) throws InterruptedException {
         for (int i = 0; i < 10; i++)
             if (!res.equals(value.getText()))
                 Thread.sleep(500);
             else
                 break;
-        return true;
     }
 
-    protected boolean searchHashMap(long key, WebElement value) throws IOException, InterruptedException {
+    protected void searchHashMap(final long key, WebElement value) throws IOException, InterruptedException {
         HashMap<Long, String> hashMap;
         Path path = FileSystems.getDefault().getPath(customer_file);
         hashMap = (HashMap<Long, String>) Files.lines(path)
@@ -116,12 +102,10 @@ public class PageObject extends FunctionalTest {
         //Если требуемого заказчика нет в hashmap, то записываем его туда.
         if (hashMap.get(key) == null) {
             writeCustomer(key, value);
-            return true;
         }
         //Если требуемый заказчик не равен текущему, то ожидаем.
         if (!hashMap.get(key).equals(value.getText()))
             compare(hashMap.get(key), value);
-        return true;
     }
 
     protected boolean readCustomer(long key, String value) throws IOException {
@@ -169,5 +153,13 @@ public class PageObject extends FunctionalTest {
             System.out.println("Current Window State       : " + String.valueOf(((JavascriptExecutor) driver).executeScript("return document.readyState")));
             return String.valueOf(((JavascriptExecutor) driver).executeScript("return document.readyState")).equals("complete");
         });
+    }
+
+    protected boolean loadingPage() {
+        return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");//interactive
+    }
+
+    protected void loadingAjax() {
+        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) driver -> (Boolean) ((JavascriptExecutor) driver).executeScript("return jQuery.active == 0"));
     }
 }

@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import tests.PageObject;
+import helper.PageObject;
 
 public class ListOZ extends PageObject {
 
@@ -12,11 +12,11 @@ public class ListOZ extends PageObject {
     }
 
     //Кнопка добавить объект закупки
-    @FindBy(xpath = "//*[@id=\"purchase-objects-index\"]/div[1]/div[2]/a[1]")
+    @FindBy(xpath = "//a[contains(text(),'Добавить объект закупки')]")
     private WebElement addOZbutton;
 
     public CreateNewOZ getNewOZ() {
-        clickFindBy(addOZbutton);
+        addOZbutton.click();
         return new CreateNewOZ(driver);
     }
 }

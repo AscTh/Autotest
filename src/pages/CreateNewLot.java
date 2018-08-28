@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import tests.PageObject;
+import helper.PageObject;
 
 public class CreateNewLot extends PageObject {
 
@@ -90,14 +90,12 @@ public class CreateNewLot extends PageObject {
     private WebElement approve;
 
     // Кнопка подтверждения согласования
-//    @FindBy(xpath = "/html/body/div[6]/div/div/div[3]/div/div/button[1]")
-//    @FindBy(xpath = "//*[@class='btn g-btn g-btn_background_green btn-success green-btn g-btn_font']//*[text()='Да']")
-//    @FindBy(css = "body > div.modal.bootstrap-dialog.size-normal.type-primary.fade.in > div > div > div.modal-footer > div > div > button.btn.g-btn.g-btn_background_green.btn-success.green-btn.g-btn_font")
     @FindBy(xpath = ".//button[text()='Да']")
     private WebElement yes_approve;
 
     // Утвердить
-    @FindBy(css = "#application-navigation > div.row > div > div.pull-right > button.btn.green-btn.ng-scope")
+//    @FindBy(css = "#application-navigation > div.row > div > div.pull-right > button.btn.green-btn.ng-scope")
+    @FindBy(xpath = "(//button[@type='button'])[12]")
     private WebElement reconcile;
 
     public void selectTypeContract(String string) {
@@ -105,22 +103,21 @@ public class CreateNewLot extends PageObject {
         select.selectByVisibleText(string);
     }
 
-    public CreateNewLot selectDefinitionMethod(String string) {
+    public CreateNewLot selectDefinitionMethod(String string, String basis) {
         setSelect(definitionMethod);
         select.selectByVisibleText(string);
-        selectBasisOfConclusion();
+        selectBasisOfConclusion(basis);
         return this;
     }
 
-    private void selectBasisOfConclusion() {
+    private void selectBasisOfConclusion(String string) {
         setSelect(basisOfConclusion);
-        select.selectByVisibleText("1. Закупка у субъектов естественных монополий");
+        select.selectByVisibleText(string);
     }
 
-    public CreateNewLot selectSMP() {
+    public void selectSMP() {
         setSelect(smpAccomodation);
         select.selectByVisibleText("Нет");
-        return this;
     }
 
     public void inputJustificationOfMethod(String str_1, String file) {

@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import tests.PageObject;
+import helper.PageObject;
 
 public class CreateNewOZ extends PageObject {
 
@@ -14,6 +14,7 @@ public class CreateNewOZ extends PageObject {
     @FindBy(name = "pgzReason")
     private WebElement inputSubject;
 
+    // Планируемый год размещения о закупке
     @FindBy(name = "plannedPublishYear")
     private WebElement selectYearOfPlacement;
 
@@ -24,6 +25,10 @@ public class CreateNewOZ extends PageObject {
     // Поле ввода КПГЗ
     @FindBy(xpath = "//*[@id=\"kpgz-select-modal\"]/div/div/div[2]/div[1]/input")
     private WebElement nameKPGZ;
+
+    // Кнопка закрытия модального окна КПГЗ
+    @FindBy(xpath = "xpath=(//button[@type='button'])[17]")
+    private WebElement webElement;
 
     @FindBy(css = "label > span.ng-binding")
     private WebElement idKPGZ;
@@ -75,29 +80,29 @@ public class CreateNewOZ extends PageObject {
     @FindBy(css = "#purchase-terms > div > div > div > div > div > div:nth-child(2) > div > div.col-md-3 > span > span > span")
     private WebElement srok;
 
-    @FindBy(xpath = "//a[@data-value='2018/0/1']")
+    @FindBy(linkText = "янв")
     private WebElement january;
-    @FindBy(xpath = "//a[@data-value='2018/1/1']")
+    @FindBy(linkText = "фев")
     private WebElement february;
-    @FindBy(xpath = "//a[@data-value='2018/2/1']")
+    @FindBy(linkText = "мар")
     private WebElement march;
-    @FindBy(xpath = "//a[@data-value='2018/3/1']")
+    @FindBy(linkText = "апр")
     private WebElement april;
-    @FindBy(xpath = "//a[@data-value='2018/4/1']")
+    @FindBy(linkText = "май")
     private WebElement may;
-    @FindBy(xpath = "//a[@data-value='2018/5/1']")
+    @FindBy(linkText = "июн")
     private WebElement june;
-    @FindBy(xpath = "//a[@data-value='2018/6/1']")
+    @FindBy(linkText = "июл")
     private WebElement july;
-    @FindBy(xpath = "//a[@data-value='2018/7/1']")
+    @FindBy(linkText = "авг")
     private WebElement august;
-    @FindBy(xpath = "//a[@data-value='2018/8/1']")
+    @FindBy(linkText = "сен")
     private WebElement september;
-    @FindBy(xpath = "//a[@data-value='2018/9/1']")
+    @FindBy(linkText = "окт")
     private WebElement october;
-    @FindBy(xpath = "//a[@data-value='2018/10/1']")
+    @FindBy(linkText = "ноя")
     private WebElement november;
-    @FindBy(xpath = "//a[@data-value='2018/11/1']")
+    @FindBy(linkText = "дек")
     private WebElement december;
 
     private void inputSrok() {
@@ -105,51 +110,51 @@ public class CreateNewOZ extends PageObject {
         String mount = formatDate(true);
         switch (mount) {
             case "01":
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@data-value='2018/0/1']")));
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("янв")));
                 january.click();
                 break;
             case "02":
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@data-value='2018/1/1']")));
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("фев")));
                 february.click();
                 break;
             case "03":
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@data-value='2018/2/1']")));
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("мар")));
                 march.click();
                 break;
             case "04":
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@data-value='2018/3/1']")));
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("апр")));
                 april.click();
                 break;
             case "05":
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@data-value='2018/4/1']")));
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("май")));
                 may.click();
                 break;
             case "06":
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@data-value='2018/5/1']")));
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("июн")));
                 june.click();
                 break;
             case "07":
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@data-value='2018/6/1']")));
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("июл")));
                 july.click();
                 break;
             case "08":
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@data-value='2018/7/1']")));
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("авг")));
                 august.click();
                 break;
             case "09":
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@data-value='2018/8/1']")));
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("сен")));
                 september.click();
                 break;
             case "10":
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@data-value='2018/9/1']")));
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("окт")));
                 october.click();
                 break;
             case "11":
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@data-value='2018/10/1']")));
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("ноя")));
                 november.click();
                 break;
             case "12":
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@data-value='2018/11/1']")));
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("дек")));
                 december.click();
                 break;
         }
@@ -160,13 +165,13 @@ public class CreateNewOZ extends PageObject {
         expectedResult.sendKeys(str1);
         infoClaim.sendKeys(str1);
         inputSrok();
-//        data.sendKeys(time("MM.yyyy", 5));
         fullName.sendKeys(str1);
     }
 
-    public void selectYearOfPlacement(String string) {
+    public void selectYearOfPlacement() {
+        String year = formatDate(false).substring(6);
         setSelect(selectYearOfPlacement);
-        select.selectByVisibleText(string);
+        select.selectByVisibleText(year);
     }
 
     //Выбор КПГЗ

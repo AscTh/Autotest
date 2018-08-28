@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import tests.PageObject;
+import helper.PageObject;
 
 public class ScheldulePlanPage extends PageObject {
 
@@ -43,10 +43,9 @@ public class ScheldulePlanPage extends PageObject {
     @FindBy(xpath = "//*[@id=\"plan-schedules-show\"]/fieldset[1]/div[1]/div[1]/div[5]/div/b")
     private static WebElement state;
 
-    public ScheldulePlanPage sendForApproval(String string) {
+    public void sendForApproval(String string) {
         annualVolume.sendKeys(string);
         saveNewSP.click();
-        return this;
     }
 
     public ScheldulePlanPage setApproveButton() {
