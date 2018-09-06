@@ -19,8 +19,13 @@
         <module name="JavaFX" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="JavaFX" target="8" />
+    <bytecodeTargetLevel target="10">
+      <module name="JavaFX" target="10" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="JavaFX" options="--add-modules=javafx.graphics,javafx.fxml" />
+    </option>
   </component>
 </project>
